@@ -5,15 +5,6 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/vanthao03596/laravel-ulid/Check%20&%20fix%20styling?label=code%20style)](https://github.com/vanthao03596/laravel-ulid/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/vanthao03596/laravel-ulid.svg?style=flat-square)](https://packagist.org/packages/vanthao03596/laravel-ulid)
 
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
-
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this laravel-ulid
-2. Run "./configure-laravel-ulid.sh" to run a script that will replace all placeholders throughout all the files
-3. Remove this block of text.
-4. Have fun creating your package.
----
-
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
 ## Installation
@@ -24,32 +15,70 @@ You can install the package via composer:
 composer require vanthao03596/laravel-ulid
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Vanthao03596\LaravelUlid\LaravelUlidServiceProvider" --tag="laravel-ulid-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="Vanthao03596\LaravelUlid\LaravelUlidServiceProvider" --tag="laravel-ulid-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
 ## Usage
 
+Generate uld from Str support class
+
 ```php
-$laravel-ulid = new Vanthao03596\LaravelUlid();
-echo $laravel-ulid->echoPhrase('Hello, Spatie!');
+// Default ulid generator with the current timestamp & lowercase string
+Str::ulid(); // 01FDRXQ57VR4K4RASPT9NPAQC0
+// Default ulid generator with the current timestamp & uppercase string
+Str::ulid(false); // 01fdrxpmg9njp20z3km461fgax
+// Default ulid generator with the given datetime & uppercase string
+Str::ulid(false, Carbon::now()->subHour()) // 01FDRTD2K8Z664S24X606N14KD
 ```
 
+Simply declare a ulid column type in your migration files.
+
+```php
+Schema::create('foos', function (Blueprint $table) {
+    $table->ulid('id')->primary(); // adds primary ulid column 
+    $table->foreignUlid('user_id')->constrained()->cascadeOnDelete(); // adds ulid foreignkey
+    $table->ulidMorphs('taggable'); // adds ulid morphs
+    $table->nullableUlidMorphs('likeable'); // adds nullable ulid morphs
+});
+```
+
+Auto generate ulid column in your model
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+use Vanthao03596\LaravelUlid\GeneratesUlid;
+
+class User extends Model
+{
+    use GeneratesUlid;
+}
+
+```
+
+Default column is `ulid`. If you wish to use a custom column name, for example if you want your primary `custom_column` column to be a `ULID`, you can define a `ulidColumn` method in your model.
+
+```php
+class User extends Model
+{
+    public function ulidColumn(): string
+    {
+        return 'custom_column';
+    }
+}
+```
+
+You can have multiple ULID columns in each table by specifying an array in the `ulidColumns` method. 
+
+```php
+class User extends Model
+{
+    public function ulidColumns(): array
+    {
+        return ['ulid', 'custom_column'];
+    }
+}
+```
 ## Testing
 
 ```bash

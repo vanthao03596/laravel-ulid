@@ -2,6 +2,6 @@
 
 All notable changes to `laravel-ulid` will be documented in this file.
 
-## 1.0.0 - 202X-XX-XX
+## 0.1 - 2021-24-08
 
 - initial release
