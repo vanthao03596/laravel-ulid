@@ -1,23 +1,24 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "vanthao03596/laravel-ulid",
+    "description": "Laravel package for ULID (Universally Unique Lexicographically Sortable Identifier)",
     "keywords": [
-        ":vendor_name",
+        "vanthao03596",
         "laravel",
-        "package_slug"
+        "laravel-ulid"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/vanthao03596/laravel-ulid",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "phamthao",
+            "email": "phamthao03596@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "illuminate/contracts": "^8.37"
+        "illuminate/contracts": "^8.37",
+        "robinvdvleuten/ulid": "^5.0"
     },
     "require-dev": {
         "brianium/paratest": "^6.2",
@@ -28,19 +29,22 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Vanthao03596\\LaravelUlid\\": "src",
+            "Vanthao03596\\LaravelUlid\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Vanthao03596\\LaravelUlid\\Tests\\": "tests"
         }
     },
     "scripts": {
         "psalm": "vendor/bin/psalm",
         "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
     },
     "config": {
         "sort-packages": true
@@ -48,11 +52,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
-            }
+                "Vanthao03596\\LaravelUlid\\LaravelUlidServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
