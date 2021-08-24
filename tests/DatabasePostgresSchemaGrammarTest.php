@@ -2,10 +2,10 @@
 
 namespace Vanthao03596\LaravelUlid\Tests;
 
-use Illuminate\Database\Schema\ForeignIdColumnDefinition;
-use Mockery as m;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\ForeignIdColumnDefinition;
 use Illuminate\Database\Schema\Grammars\PostgresGrammar;
+use Mockery as m;
 
 class DatabasePostgresSchemaGrammarTest extends TestCase
 {
@@ -47,6 +47,6 @@ class DatabasePostgresSchemaGrammarTest extends TestCase
 
     public function getGrammar()
     {
-        return new PostgresGrammar;
+        return new PostgresGrammar();
     }
 }

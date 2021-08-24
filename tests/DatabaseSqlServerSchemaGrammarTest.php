@@ -2,10 +2,10 @@
 
 namespace Vanthao03596\LaravelUlid\Tests;
 
-use Illuminate\Database\Schema\ForeignIdColumnDefinition;
-use Mockery as m;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\ForeignIdColumnDefinition;
 use Illuminate\Database\Schema\Grammars\SqlServerGrammar;
+use Mockery as m;
 
 class DatabaseSqlServerSchemaGrammarTest extends TestCase
 {
@@ -47,6 +47,6 @@ class DatabaseSqlServerSchemaGrammarTest extends TestCase
 
     public function getGrammar()
     {
-        return new SqlServerGrammar;
+        return new SqlServerGrammar();
     }
 }

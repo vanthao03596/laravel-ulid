@@ -3,10 +3,10 @@
 namespace Vanthao03596\LaravelUlid\Tests;
 
 use Illuminate\Database\Connection;
-use Illuminate\Database\Schema\ForeignIdColumnDefinition;
-use Mockery as m;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\ForeignIdColumnDefinition;
 use Illuminate\Database\Schema\Grammars\MySqlGrammar;
+use Mockery as m;
 
 class DatabaseMySqlSchemaGrammarTest extends TestCase
 {
@@ -53,6 +53,6 @@ class DatabaseMySqlSchemaGrammarTest extends TestCase
 
     public function getGrammar()
     {
-        return new MySqlGrammar;
+        return new MySqlGrammar();
     }
 }

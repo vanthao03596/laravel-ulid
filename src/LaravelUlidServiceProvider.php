@@ -3,13 +3,13 @@
 namespace Vanthao03596\LaravelUlid;
 
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Schema\ColumnDefinition;
 use Illuminate\Database\Schema\ForeignIdColumnDefinition;
+use Illuminate\Database\Schema\Grammars\Grammar;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Ulid\Ulid;
-use Illuminate\Database\Schema\Grammars\Grammar;
 use RuntimeException;
-use Illuminate\Database\Schema\ColumnDefinition;
+use Ulid\Ulid;
 
 class LaravelUlidServiceProvider extends ServiceProvider
 {
