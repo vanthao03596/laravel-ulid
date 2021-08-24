@@ -5,8 +5,6 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/vanthao03596/laravel-ulid/Check%20&%20fix%20styling?label=code%20style)](https://github.com/vanthao03596/laravel-ulid/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/vanthao03596/laravel-ulid.svg?style=flat-square)](https://packagist.org/packages/vanthao03596/laravel-ulid)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
 ## Installation
 
 You can install the package via composer:
