@@ -4,7 +4,6 @@ namespace Vanthao03596\LaravelUlid\Tests;
 
 use Illuminate\Database\Eloquent\Model;
 use Vanthao03596\LaravelUlid\GeneratesUlid;
-use Illuminate\Support\Str;
 
 class GenerateUlidTest extends TestCase
 {
@@ -42,18 +41,16 @@ class GenerateUlidTest extends TestCase
 
 class Post extends Model
 {
-    protected $guarded = [];
-
     use GeneratesUlid;
+    protected $guarded = [];
 
     public $timestamps = false;
 }
 
 class Comment extends Model
 {
-    protected $guarded = [];
-
     use GeneratesUlid;
+    protected $guarded = [];
 
     public $timestamps = false;
 

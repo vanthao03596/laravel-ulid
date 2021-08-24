@@ -3,12 +3,10 @@
 namespace Vanthao03596\LaravelUlid\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Vanthao03596\LaravelUlid\LaravelUlidServiceProvider;
-use Illuminate\Support\Facades\Schema;
-use Vanthao03596\LaravelUlid\GeneratesUlid;
 
 class TestCase extends Orchestra
 {
@@ -30,12 +28,12 @@ class TestCase extends Orchestra
         ];
     }
 
-   public function getEnvironmentSetUp($app)
-   {
-       config()->set('database.default', 'testing');
-   }
+    public function getEnvironmentSetUp($app)
+    {
+        config()->set('database.default', 'testing');
+    }
 
-   protected function setupDatabase($app)
+    protected function setupDatabase($app)
     {
         Schema::dropAllTables();
 
