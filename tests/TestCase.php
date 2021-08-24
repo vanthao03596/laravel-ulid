@@ -3,8 +3,12 @@
 namespace Vanthao03596\LaravelUlid\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Blueprint;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Vanthao03596\LaravelUlid\LaravelUlidServiceProvider;
+use Illuminate\Support\Facades\Schema;
+use Vanthao03596\LaravelUlid\GeneratesUlid;
 
 class TestCase extends Orchestra
 {
@@ -15,6 +19,8 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Vanthao03596\\LaravelUlid\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
+        $this->setupDatabase($this->app);
     }
 
     protected function getPackageProviders($app)
@@ -24,11 +30,26 @@ class TestCase extends Orchestra
         ];
     }
 
-//    public function getEnvironmentSetUp($app)
-//    {
-//        config()->set('database.default', 'testing');
-//
-//        $migration = include __DIR__.'/../database/migrations/create_laravel-ulid_table.php.stub';
-//        $migration->up();
-//    }
+   public function getEnvironmentSetUp($app)
+   {
+       config()->set('database.default', 'testing');
+   }
+
+   protected function setupDatabase($app)
+    {
+        Schema::dropAllTables();
+
+        $app['db']->connection()->getSchemaBuilder()->create('posts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->ulid('ulid')->nullable();
+            $table->string('title');
+        });
+
+        $app['db']->connection()->getSchemaBuilder()->create('comments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->ulid('custom_ulid')->nullable();
+            $table->ulid('other_custom_ulid')->nullable();
+            $table->string('comment');
+        });
+    }
 }

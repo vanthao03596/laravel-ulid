@@ -16,7 +16,7 @@ trait GeneratesUlid
 
                 if (isset($model->attributes[$item]) && ! is_null($model->attributes[$item])) {
                     /* @var \Ulid\Ulid $ulid */
-                    $ulid = Ulid::fromString($model->attributes[$item]);
+                    $ulid = Ulid::fromString($model->attributes[$item], true);
                 }
 
                 $model->{$item} = (string) $ulid;
