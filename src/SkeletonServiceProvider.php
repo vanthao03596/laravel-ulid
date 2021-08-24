@@ -10,7 +10,6 @@ class SkeletonServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
-
             $this->publishes([
                 __DIR__ . '/../config/skeleton.php' => config_path('skeleton.php'),
             ], 'config');
@@ -27,7 +26,7 @@ class SkeletonServiceProvider extends ServiceProvider
             }
 
             $this->commands([
-                SkeletonCommand::class
+                SkeletonCommand::class,
             ]);
         }
     }
